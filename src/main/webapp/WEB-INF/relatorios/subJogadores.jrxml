@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subJogadores" pageWidth="535" pageHeight="842" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="499ce7fd-a536-4612-b975-6a82d9afd6b8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nascimento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[nascimento]]></fieldDescription>
+	</field>
+	<field name="altura" class="java.lang.Double">
+		<fieldDescription><![CDATA[altura]]></fieldDescription>
+	</field>
+	<field name="peso" class="java.lang.Double">
+		<fieldDescription><![CDATA[peso]]></fieldDescription>
+	</field>
+	<field name="posicao" class="br.edu.ifsul.modelo.Posicao">
+		<fieldDescription><![CDATA[posicao]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="495" height="30" uuid="357ed10b-88e1-4657-a2c9-d9dc814f027f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="0" width="100" height="30" uuid="683c54b4-612f-4f10-b657-821dacf2b54c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="51263d39-f2ea-435a-a406-500b1ac3d448"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="100" height="30" uuid="73855d4c-9035-405e-abe5-b0040e9e3b04">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dbaaf1c6-8f30-4ec5-994d-111338aa41e9"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Posição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="0" width="90" height="30" uuid="4d55cc07-01e7-48af-a000-345f235d2b07">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c9d50a9a-7ea5-4dc8-98d1-1aa7303c6fa5"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Nascimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="70" height="30" uuid="3090fb53-450d-4596-8277-914241c6b38f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4901edab-0563-49b2-b759-aac3959d7018"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Altura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="70" height="30" uuid="d0e5b099-d68f-4e86-ac7c-e16ec6fafa84">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1253763a-0fcc-40a6-abca-9653e0e21709"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="495" height="30" uuid="9bb33380-0b57-40f6-84ee-45d12365db30"/>
+			</rectangle>
+			<textField>
+				<reportElement x="10" y="0" width="120" height="30" uuid="ded58fe2-9cae-4484-a5f7-ea13875d518b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="51263d39-f2ea-435a-a406-500b1ac3d448"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="130" height="30" uuid="14df4e4f-0e9c-4834-a3d6-fd96e3052946">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dbaaf1c6-8f30-4ec5-994d-111338aa41e9"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{posicao}.getNome()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="260" y="0" width="90" height="30" uuid="55a1b62c-05ce-4eca-ad2b-697cf2698248">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c9d50a9a-7ea5-4dc8-98d1-1aa7303c6fa5"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nascimento}.getTime()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="70" height="30" uuid="3676be74-9471-407a-8f9b-099ad76e1484">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4901edab-0563-49b2-b759-aac3959d7018"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{altura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="70" height="30" uuid="ea971fa0-75e1-4e59-b9b4-9a6763526cdc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1253763a-0fcc-40a6-abca-9653e0e21709"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{peso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

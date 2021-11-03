@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teste" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c469121c-c4ce-4ed0-9787-40507aedc0ae">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dadosTIme.xml"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="historia" class="java.lang.String">
+		<fieldDescription><![CDATA[historia]]></fieldDescription>
+	</field>
+	<field name="cidade" class="br.edu.ifsul.modelo.Cidade">
+		<fieldDescription><![CDATA[cidade]]></fieldDescription>
+	</field>
+	<field name="jogadores" class="java.util.List">
+		<fieldDescription><![CDATA[jogadores]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="usuario" class="br.edu.ifsul.modelo.Usuario">
+		<fieldDescription><![CDATA[usuario]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="tecnico" class="br.edu.ifsul.modelo.Pessoa">
+		<fieldDescription><![CDATA[tecnico]]></fieldDescription>
+	</field>
+	<field name="dataFundacao" class="java.util.Calendar">
+		<fieldDescription><![CDATA[dataFundacao]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="163" y="0" width="100" height="30" uuid="32d5bac4-47ee-46a1-ab05-9c179471c51d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f561f313-0603-4676-8fb3-406e1a7ee07d"/>
+				</reportElement>
+				<text><![CDATA[usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="0" width="100" height="30" uuid="f6cfd69b-0bbf-4fec-9bdf-23ca636f944d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a27ed24e-ded1-4ef2-b4d3-3d35bcc67fa5"/>
+				</reportElement>
+				<text><![CDATA[tecnico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="100" height="30" uuid="fef0f847-ab72-427a-b570-843ff5620a31">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="491cbdcc-ecf1-4d8c-8552-eea04db65bd8"/>
+				</reportElement>
+				<text><![CDATA[cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="0" width="100" height="30" uuid="f5272530-4892-4c8d-9f2c-63f63c86d6cd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dff50d73-70f6-4610-82bb-374b0cf81fa4"/>
+				</reportElement>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="0" width="100" height="30" uuid="a17bc713-b38c-46b6-9d9d-f3c52612745a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f561f313-0603-4676-8fb3-406e1a7ee07d"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{usuario}.getNome()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="30" uuid="5f7f4cff-0e30-4d49-b602-c66baaae3b3d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a27ed24e-ded1-4ef2-b4d3-3d35bcc67fa5"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tecnico}.getNome()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="0" width="100" height="30" uuid="9ed954fa-1531-45ab-aefd-3119d5e4f989">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="491cbdcc-ecf1-4d8c-8552-eea04db65bd8"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cidade}.getNome()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="100" height="30" uuid="f6cf3d44-cd7f-4929-811c-2784a114b202">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dff50d73-70f6-4610-82bb-374b0cf81fa4"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

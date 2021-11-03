@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="titulo">Sistema com JSF e Payara com Netbeans 12.2</ui:define>
+        <ui:define name="conteudo">
+            <div align="center">
+                <h:form>
+                    <p:growl/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:outputLabel value="Login de usuário"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <div align="center">
+                                <p:commandButton value="Efetuar login"
+                                                 action="#{controleLogin.efetuarLogin()}"
+                                                 ajax="false"/>
+                            </div>
+                        </f:facet>
+                        <p:outputLabel value="Usuário" for="txtUsuario"/>
+                        <p:inputText value="#{controleLogin.usuario}" id="txtUsuario"
+                                     required="true" requiredMessage="Nome de usuário deve ser informado"/>
+                        <p:outputLabel value="Senha" for="txtSenha"/>
+                        <p:password value="#{controleLogin.senha}" id="txtSenha"
+                                     required="true" requiredMessage="Senha deve ser informada"/>                        
+                    </p:panelGrid>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

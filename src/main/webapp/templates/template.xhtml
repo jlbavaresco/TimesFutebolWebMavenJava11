@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title><ui:insert name="titulo"></ui:insert></title>
+        <h:outputStylesheet library="css" name="estilos.css"/>
+        <h:outputScript library="js" name="scripts.js"/>
+    </h:head>
+    <h:body>
+        <h:form id="formMenu" prependId="false">
+            <p:megaMenu>
+                <p:menuitem value="Home"
+                            url="#{facesContext.externalContext.requestContextPath}/index.xhtml"
+                            icon="pi pi-home"/>
+                <p:submenu label="Cadastros"
+                           rendered="#{controleLogin.usuarioAutenticado != null}">
+                    <p:column>
+                        <p:submenu label="Básicos">
+                            <p:menuitem action="#{controleEstado.listar()}"
+                                        value="Manutenção de Estados"
+                                        ajax="false"/>
+                            <p:menuitem action="#{controleCidade.listar()}"
+                                        value="Manutenção de Cidades"
+                                        ajax="false"/> 
+                            <p:menuitem action="#{controleUsuario.listar()}"
+                                        value="Manutenção de Usuários"
+                                        ajax="false"/>                             
+                        </p:submenu>
+                    </p:column>
+                   <p:column>
+                        <p:submenu label="Time">
+                            <p:menuitem action="#{controleTime.listar()}"
+                                        value="Manutenção de Times"
+                                        ajax="false"/>  
+                            
+                        </p:submenu>
+                    </p:column>                    
+                </p:submenu>
+                <p:submenu label="Relatórios" rendered="#{controleLogin.usuarioAutenticado != null}">
+                    <p:column>
+                        <p:submenu label="Básicos">
+                            <p:menuitem action="#{controleTime.imprimeTimes()}"
+                                        value="Imprimir"
+                                        icon="pi pi-print"
+                                        ajax="false"
+                                        target="_blank"/>                                                 
+                        </p:submenu>
+                    </p:column>                  
+                </p:submenu>    
+                <p:submenu label="Usuário: #{controleLogin.usuarioAutenticado != null ? 
+                                             controleLogin.usuarioAutenticado.nome : ''}">
+                    <p:column>
+                        <p:submenu label="Efetuar login" 
+                                   rendered="#{controleLogin.usuarioAutenticado == null}">
+                            <p:menuitem action="#{controleLogin.irPaginaLogin()}"
+                                        value="Login" icon="pi pi-user" ajax="false"/>
+                        </p:submenu>
+                        <p:submenu label="Efetuar Logout" 
+                                   rendered="#{controleLogin.usuarioAutenticado != null}">
+                            <p:menuitem action="#{controleLogin.logout()}"
+                                        value="Logout" icon="pi pi-power-off" ajax="false"/>
+                        </p:submenu>                        
+                    </p:column>
+                </p:submenu>
+            </p:megaMenu>
+        </h:form>
+        <ui:insert name="conteudo">
+            
+        </ui:insert>
+        <ui:include src="ajaxstatus.xhtml"/>      
+        
+    </h:body>
+</html>
+

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog header="Edição" widgetVar="dlg" resizable="false"
+              modal="true" width="50%" height="100%">
+        <h:form id="formEdicao" prependId="false">
+            <p:growl id="growl"/>
+            <p:tabView id="tab" activeIndex="#{controleUsuario.abaAtiva}">
+                <p:tab title="Dados principais">
+                    <div align="center">
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Nome de usuário"/>
+                            <p:inputText value="#{controleUsuario.objeto.nomeUsuario}"
+                                         size="20" maxlength="20" 
+                                         readonly="#{!controleUsuario.novo}">
+                                <p:ajax process="@this" update="@this growl"
+                                        listener="#{controleUsuario.verificarUnicidadeNomeUsuario()}"
+                                        event="blur"/>
+                            </p:inputText>
+                            <p:outputLabel value="Nome" for="txtNome"/>
+                            <p:inputText id="txtNome" value="#{controleUsuario.objeto.nome}"
+                                         size="50" maxlength="50"
+                                         placeholder="Obrigatório"/>
+                            <p:outputLabel value="Senha" for="txtSenha"/>
+                            <p:password id="txtSenha" value="#{controleUsuario.objeto.senha}"
+                                        redisplay="true" size="10" maxlength="10"
+                                        feedback="true" 
+                                        weakLabel="Senha Fraca" strongLabel="Senha Forte"/>
+                            <p:outputLabel value="Email" for="txtEmail"/>
+                            <p:inputText id="txtEmail" value="#{controleUsuario.objeto.email}"
+                                         size="50" maxlength="50"/>
+                            <p:outputLabel value="Ativo" for="selectAtivo"/>
+                            <p:selectBooleanCheckbox id="selectAtivo"
+                                                     value="#{controleUsuario.objeto.ativo}"/>
+                            <p:outputLabel value="Data de cadastro" for="txtDataCadastro"/>
+                            <p:calendar id="txtDataCadastro" 
+                                        value="#{controleUsuario.objeto.dataCadastro}"
+                                        mask="dd/MM/yyyy" navigator="true">
+                                <f:converter converterId="converterCalendar"/>
+                            </p:calendar>
+                        </p:panelGrid>
+                    </div>                    
+                </p:tab>
+                <p:tab title="Permissões">
+                    <p:dataTable value="#{controleUsuario.objeto.permissoes}"
+                                 var="per" id="listaPermissoes">
+                        <f:facet name="header">
+                            <p:panelGrid columns="3">
+                                <p:outputLabel value="Permissão"/>
+                                <p:selectOneMenu value="#{controleUsuario.permissao}"
+                                                 id="selectPermissao">
+                                    <f:converter binding="#{converterPermissao}"/>
+                                    <f:selectItem noSelectionOption="true"
+                                                  itemLabel="Selecione um registro"/>
+                                    <f:selectItems value="#{controleUsuario.daoPermissao.listaTodos}"
+                                                   var="p" itemLabel="#{p.nome}"/>                                    
+                                </p:selectOneMenu>
+                                <p:commandButton value="Adicionar" 
+                                                 actionListener="#{controleUsuario.adicionarPermissao()}"
+                                                 update="listaPermissoes growl"
+                                                 process="@this selectPermissao"
+                                                 icon="pi pi-plus"/>
+                            </p:panelGrid>
+                        </f:facet>
+                        <p:column headerText="Nome">
+                            <p:outputLabel value="#{per.nome}"/>
+                        </p:column>
+                        <p:column headerText="Descrição">
+                            <p:outputLabel value="#{per.descricao}"/>
+                        </p:column>  
+                        <p:column headerText="Ações">
+                            <div align="center">
+                                <p:commandButton 
+                                    actionListener="#{controleUsuario.removerPermissao(per)}"
+                                    process="@this"
+                                    update="listaPermissoes growl" icon="pi pi-trash"
+                                    title="Remover permissão"/>
+                            </div>
+                        </p:column>
+                    </p:dataTable>
+                </p:tab>                
+            </p:tabView>
+
+            <p:panel>
+                <div align="center">
+                    <p:commandButton value="Salvar"
+                                     icon="pi pi-save"
+                                     actionListener="#{controleUsuario.salvar()}"
+                                     update="formEdicao formListagem"
+                                     oncomplete="if (!args.validationFailed){PF('dlg').hide();}"/>
+                </div>
+            </p:panel>
+        </h:form>
+    </p:dialog>
+</html>
+

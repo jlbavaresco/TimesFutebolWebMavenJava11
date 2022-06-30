@@ -31,6 +31,25 @@
     </welcome-file-list>
     
     <!-- segurança -->
+    <!-- acesso ao CRUD de Usuario usuarios com role de ADMINISTRADOR -->
+    <security-constraint>
+        <display-name>segprivadousuario</display-name>
+        <web-resource-collection>
+            <web-resource-name>privadocrudusuario</web-resource-name>
+            <url-pattern>/privado/usuario/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>            
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMINISTRADOR</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>    
+    <!-- acesso ao diretório privado por usuarios com role de USUARIO -->
     <security-constraint>
         <display-name>segprivado</display-name>
         <web-resource-collection>
@@ -42,7 +61,6 @@
             <http-method>DELETE</http-method>            
         </web-resource-collection>
         <auth-constraint>
-            <role-name>ADMINISTRADOR</role-name>
             <role-name>USUARIO</role-name>
         </auth-constraint>
         <user-data-constraint>
@@ -78,5 +96,10 @@
     <security-role>
         <description>usuario</description>
         <role-name>USUARIO</role-name>
-    </security-role>    
+    </security-role> 
+    <!-- pagina de erro de acesso negado --> 
+    <error-page>
+        <error-code>403</error-code>
+        <location>/negado.xhtml</location>
+    </error-page>      
 </web-app>
